@@ -1,0 +1,38 @@
+Taking turns
+	Current problem:
+		each keypress initiates a "round" 
+			so hammering away on the kbd makes 
+				bullets undodgeable 
+				stabbing overly effective
+				etc
+	Solution:
+		enforce a proper rounds system
+			round length is the simstep conf variable
+			bullets explosions etc get updated once per round
+				(as current if no keypresses)
+			each player can only perform one action per round
+				typing a character of a taunt does *not* count as an action!
+		implementation:
+			return value of execute() indicates whether an action has occured
+			use gettimeofday to determine when the round is over, I guess
+			or use signals?
+				likely to get ugly
+					Interrupted Bloody System Calls
+			or just record time-of-last-action on a per-player basis?
+				easiest
+				perhaps fairest
+				need a separate one for shots
+				implemented
+					but there's a problem:
+						it loops CPU-intensively while waiting for actions to be allowed
+						to be taken, rather than sleeping on a select or something
+						equally nice
+					so removed
+			current solution (040710):
+				rounds enforced by gettimeofday, sleeping until start of next one.
+				problems:
+					it's annoying to play with round-times longer than about
+					.15s, and the simulation is too fast with round-times
+					shorter than about .3s
+				solution:
+					none.

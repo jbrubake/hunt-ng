@@ -1,0 +1,8 @@
+huntd gets SIGPIPE when a client quits
+    But only if it's run under gdb!
+    Not a clue what's going on really...
+	We do appear to write to a dead socket in this case, but then we
+	always have and the bug is new (seems to have been introduced along
+	with colour, or soon prior)
+monitors can't communicate
+man pages need updating

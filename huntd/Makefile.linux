@@ -1,0 +1,37 @@
+### Config:
+
+# Uncomment one of the following:
+CPPFLAGS+=-g # Debugging version
+#CPPFLAGS+=-O2 # Optimised version
+
+PREFIX=/usr/local
+
+### End of configurable section
+
+
+PROG=	huntd
+SRCS=	answer.c conf.c draw.c driver.c execute.c expl.c \
+	extern.c makemaze.c message.c shots.c terminal.c \
+	../lib/fgetln.c ../lib/strlcat.c ../lib/strlcpy.c
+OBJS=	answer.o conf.o draw.o driver.o execute.o expl.o \
+	extern.o makemaze.o message.o shots.o terminal.o \
+	../lib/fgetln.o ../lib/strlcat.o ../lib/strlcpy.o
+MAN=	huntd.6
+MANDEST=man6
+
+LDADD=	-lwrap
+
+CPPFLAGS+=-I../lib
+
+CPPFLAGS+=-DLINUX
+
+$(PROG): $(OBJS)
+	gcc $(LDADD) -o $(PROG) $(OBJS)
+
+clean:
+	rm -f *.o huntd core
+
+install: $(PROG)
+	cp $(PROG) $(PREFIX)/sbin/
+	#cp huntd.init /etc/rc.d/init.d/huntd
+	cp $(MAN) $(PREFIX)/man/$(MANDEST)/

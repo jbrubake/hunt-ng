@@ -1,0 +1,13 @@
+PROG=	hunt
+SRCS=	connect.c display.c hunt.c list.c otto.c playit.c ../lib/strlcat.c ../lib/strlcpy.c ../lib/fgetln.c
+MAN=	huntd.6
+
+$(PROG): $(SRCS)
+	gcc -g -DUSE_CURSES -DLINUX -I../huntd -I../lib/ -lcurses -o $(PROG) $(SRCS)
+
+clean:
+	rm -f *.o $(PROG) core
+
+install: hunt
+	cp hunt /usr/local/bin
+	cp hunt.6 /usr/local/man/man6/
