@@ -12,7 +12,7 @@ PREFIX=/usr/local
 PROG=	hunt-hacked
 SRCS=	connect.c display.c hunt.c list.c otto.c playit.c ../lib/strlcat.c ../lib/strlcpy.c ../lib/fgetln.c
 OBJS=	connect.o display.o hunt.o list.o otto.o playit.o ../lib/strlcat.o ../lib/strlcpy.o ../lib/fgetln.o
-MAN=	hunt.6
+MAN=	hunt-hacked.6
 MANDEST=man6
 
 LDADD=	-lncurses

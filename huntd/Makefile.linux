@@ -16,7 +16,7 @@ SRCS=	answer.c conf.c draw.c driver.c execute.c expl.c \
 OBJS=	answer.o conf.o draw.o driver.o execute.o expl.o \
 	extern.o makemaze.o message.o shots.o terminal.o \
 	../lib/fgetln.o ../lib/strlcat.o ../lib/strlcpy.o
-MAN=	huntd.6
+MAN=	huntd-hacked.6
 MANDEST=man6
 
 LDADD=	-lwrap

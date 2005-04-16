@@ -3,7 +3,7 @@
 
 PROG=	hunt-hacked
 SRCS=	connect.c hunt.c otto.c playit.c display.c list.c
-MAN=	hunt.6
+MAN=	hunt-hacked.6
 #LDADD=	-lncurses
 LDADD=	-lcurses
 DPADD=	${LIBCURSES}

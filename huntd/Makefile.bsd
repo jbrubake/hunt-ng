@@ -4,7 +4,7 @@
 PROG=	huntd-hacked
 SRCS=	answer.c conf.c draw.c driver.c execute.c expl.c \
 	extern.c message.c makemaze.c shots.c terminal.c
-MAN=	huntd.6
+MAN=	huntd-hacked.6
 LDADD+=	-lwrap
 DPADD+= ${LIBWRAP}
 
