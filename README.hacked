@@ -16,6 +16,9 @@ failed on yours. Please do send bug reports if it does. The linux support is a
 complete hack, using #IFDEF LINUX in a few places. Were there demand, I would
 write a configure script.
 
+Please note that the protocol has changed slightly, so you can not use this
+client (resp server) with the original server (resp client).
+
 There is a darcs repo for this at
 http://thedave.homelinux.org:81/~martin/darcs-repos/hunt-hacked/
 
