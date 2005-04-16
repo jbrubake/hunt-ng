@@ -48,7 +48,7 @@
 /* # define	HUNT_PORT_NAME		("hunt") */
 /* # define	HUNT_PORT		(('h' << 8) | 't') */
 # define	HUNT_PORT		(('h' << 8) | 'h') /* "Hacked Hunt" */
-# define	HUNT_PORT_NAME		("hunt.hacked")
+# define	HUNT_PORT_NAME		("hunt-hacked")
 
 # define	ADDCH		('a' | 0200)
 # define	MOVE		('m' | 0200)

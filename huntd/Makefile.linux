@@ -9,7 +9,7 @@ PREFIX=/usr/local
 ### End of configurable section
 
 
-PROG=	huntd
+PROG=	huntd-hacked
 SRCS=	answer.c conf.c draw.c driver.c execute.c expl.c \
 	extern.c makemaze.c message.c shots.c terminal.c \
 	../lib/fgetln.c ../lib/strlcat.c ../lib/strlcpy.c
