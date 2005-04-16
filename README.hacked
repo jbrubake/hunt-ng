@@ -1,0 +1,24 @@
+This is my hacked version of hunt. It adds:
+    * colour
+    * a messaging system
+    * a new timing system
+    * other stuff I forget
+    * undoubtedly lots of bugs
+
+It really is all rather hacky. I wrote it partially because I wanted the above
+things, and partially to learn some C... so don't expect good code. If I am
+making it public, it is only because I think it's significantly more fun than
+the original, and I hope others may get enjoyment from it.
+
+I have successfully compiled this on my Gentoo Linux system and on SDF
+(sdf.lonestar.org)'s NetBSD system. I would however not be surprised if it
+failed on yours. Please do send bug reports if it does. The linux support is a
+complete hack, using #IFDEF LINUX in a few places. Were there demand, I would
+write a configure script.
+
+There is a darcs repo for this at
+http://thedave.homelinux.org:81/~martin/darcs-repos/hunt-hacked/
+
+Patches gratefully recieved.
+
+Martin

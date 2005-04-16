@@ -1,0 +1,6 @@
+in each of hunt and huntd:
+    copy the appropriate makefile to Makefile
+    cross fingers
+    make
+    make install
+    curse the author for not providing a decent build system
