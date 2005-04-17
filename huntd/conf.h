@@ -16,6 +16,7 @@ extern int conf_cloak;
 extern int conf_rounds;
 extern int conf_show_pain;
 extern int conf_pain_message;
+extern int conf_msg_self;
 extern int conf_color;
 extern int conf_share_vision;
 extern int conf_share_scan;

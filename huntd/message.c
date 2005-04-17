@@ -201,7 +201,7 @@ process_command(PLAYER *pp, char *command)
 		PLAYER *to_pp;
 
 		FOR_EACH_PLAYER(to_pp)
-			if (to_pp != pp)
+			if (to_pp != pp || conf_msg_self)
 				msg(pp, to_pp, command);
 	}
 }

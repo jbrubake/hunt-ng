@@ -29,6 +29,7 @@ int conf_cloak =	1;
 int conf_rounds =	1;
 int conf_show_pain =	0;
 int conf_pain_message =	1;
+int conf_msg_self =	1;
 int conf_color =	1;
 int conf_share_vision =	1;
 int conf_share_scan =	0;
@@ -95,6 +96,7 @@ static struct kwvar keywords[] = {
 	{ "rounds",		&conf_rounds,		Vint },
 	{ "show_pain",		&conf_show_pain,	Vint },
 	{ "pain_message",	&conf_pain_message,	Vint },
+	{ "msg_self",		&conf_msg_self,		Vint },
 	{ "color",		&conf_color,		Vint },
 	{ "share_vision",	&conf_share_vision,	Vint },
 	{ "share_scan",		&conf_share_scan,	Vint },
