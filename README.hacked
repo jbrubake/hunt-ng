@@ -16,6 +16,9 @@ failed on yours. Please do send bug reports if it does. The linux support is a
 complete hack, using #IFDEF LINUX in a few places. Were there demand, I would
 write a configure script.
 
+There should be a server running on thedave.homelinux.org if you want to come
+play - just run 'hunt-hacked thedave.homelinux.org'.
+
 Please note that the protocol has changed slightly, so you can not use this
 client (resp server) with the original server (resp client).
 
