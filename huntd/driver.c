@@ -145,7 +145,7 @@ again:
 		 *  There are three modes, selected by conf variables:
 		 *	1. rounds==0, simstep=0:
 		 *	    The classic mode. All socket reading is blocking,
-		 *	    which means that the simultion proceeds at a rate
+		 *	    which means that the simulation proceeds at a rate
 		 *	    determined by the activity of the players. If
 		 *	    no-one types anything, nothing happens - bullets
 		 *	    hang motionless in the air, lava freezes in the
@@ -168,7 +168,7 @@ again:
 		 *	    I'm not sure how much of an efficiency hit the
 		 *	    frequent calls to gettimeofday(2) and its ilk are.
 		 *	    Added by me (MDB).
-		 *  Note that the logical fourth mode (rounds==0, simstep==0)
+		 *  Note that the logical fourth mode (rounds==1, simstep==0)
 		 *  is just a less efficient version of 1.
 		 */
 
