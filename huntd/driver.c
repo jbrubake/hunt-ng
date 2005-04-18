@@ -414,8 +414,14 @@ init()
 	struct servent *se;
 
 	(void) setsid();
+	/* MDB: AFAICT, the following is superfluous once we've done a setsid,
+	 * and more to the point appears to give an error when we are already
+	 * the process leader (if we run from xinetd or similar). I'm not
+	 * entirely clear on what's going on here, but I'm commenting this out
+	 * for now.
 	if (setpgid(getpid(), getpid()) == -1)
 		err(1, "setpgid");
+	*/
 
 	sact.sa_flags = SA_RESTART;
 	sigemptyset(&sact.sa_mask);
