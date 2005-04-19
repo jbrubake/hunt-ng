@@ -11,12 +11,6 @@
 #endif
 #endif
 
-/* nor a sin_len field in sockaddr_in 
- * TODO: use autoconf for this kind of thing */
-#ifndef LINUX
-#define SIN_HAS_SIN_LEN
-#endif
-
 struct driver {
 	struct sockaddr addr;
 	u_int16_t	response;
