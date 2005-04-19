@@ -59,7 +59,7 @@ int	Server_socket;		/* test socket to answer datagrams */
 FLAG	should_announce = TRUE;	/* true if listening on standard port */
 u_short	sock_port;		/* port # of tcp listen socket */
 u_short	stat_port;		/* port # of statistics tcp socket */
-in_addr_t Server_addr = INADDR_ANY;	/* address to bind to */
+struct in_addr Server_addr = { INADDR_ANY };	/* address to bind to */
 
 static	void	clear_scores(void);
 static	int	havechar(PLAYER *);
@@ -116,7 +116,7 @@ main(ac, av)
 			Server_port = atoi(optarg);
 			break;
 		  case 'a':
-			if (!inet_aton(optarg, (struct in_addr *)&Server_addr))
+			if (!inet_aton(optarg, &Server_addr))
 				err(1, "bad interface address: %s", optarg);
 			break;
 		  case 'D':
@@ -453,7 +453,7 @@ init()
 
 	/* Initialize statistics socket: */
 	addr.sin_family = AF_INET;
-	addr.sin_addr.s_addr = Server_addr;
+	addr.sin_addr.s_addr = Server_addr.s_addr;
 	addr.sin_port = 0;
 
 	Status = socket(AF_INET, SOCK_STREAM, 0);
@@ -475,7 +475,7 @@ init()
 
 	/* Initialize main socket: */
 	addr.sin_family = AF_INET;
-	addr.sin_addr.s_addr = Server_addr;
+	addr.sin_addr.s_addr = Server_addr.s_addr;
 	addr.sin_port = 0;
 
 	Socket = socket(AF_INET, SOCK_STREAM, 0);
