@@ -16,6 +16,8 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#ifndef HAVE_STRLCAT
+
 #if defined(LIBC_SCCS) && !defined(lint)
 static char *rcsid = "$OpenBSD: strlcat.c,v 1.11 2003/06/17 21:56:24 millert Exp $";
 #endif /* LIBC_SCCS and not lint */
@@ -59,3 +61,5 @@ strlcat(char *dst, const char *src, size_t siz)
 
 	return(dlen + (s - src));	/* count does not include NUL */
 }
+
+#endif

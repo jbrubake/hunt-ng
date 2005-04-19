@@ -8,7 +8,7 @@
  * keys and pointer/size pairs to hold the lines.
  */
 
-#ifdef LINUX
+#ifndef HAVE_FGETLN
 
 #include "../config.h"
 
