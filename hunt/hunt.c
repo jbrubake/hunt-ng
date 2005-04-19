@@ -262,7 +262,7 @@ main(ac, av)
 			leave(1, "socket");
 
 		option = 1;
-#ifndef LINUX
+#ifdef SO_USELOOPBACK
 		if (setsockopt(Socket, SOL_SOCKET, SO_USELOOPBACK,
 		    &option, sizeof option) < 0)
 			warn("setsockopt loopback");
