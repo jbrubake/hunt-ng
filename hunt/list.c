@@ -20,10 +20,12 @@
 #include <sys/socket.h>
 #include <sys/time.h>
 
-#ifdef LINUX
+#ifdef HAVE_SYS_SOCKIO_H
+#include <sys/sockio.h>
+#elif HAVE_ASM_SOCKET_H
 #include <asm/socket.h>
 #else
-#include <sys/sockio.h>
+#error
 #endif
 
 #include <sys/ioctl.h>
