@@ -35,9 +35,7 @@
 #include <unistd.h>
 #include <string.h>
 
-#if defined(LINUX)
 #include <sys/types.h>
-#endif
 
 #include "hunt.h"
 #include "client.h"
