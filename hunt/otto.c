@@ -157,7 +157,7 @@ otto(y, x, face, buf, buflen)
 {
 	int		i;
 
-	if (nanosleep(&Otto_pause) < 0)
+	if (nanosleep(&Otto_pause, NULL) < 0)
 		panic("nanosleep");
 
 	/* save away parameters so other functions may use/update info */
