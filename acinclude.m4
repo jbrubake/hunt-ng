@@ -30,7 +30,7 @@ AC_DEFUN([JCF_WITH_CURSES],
 	AC_CACHE_CHECK([for working curses], jcf_cv_curses,
 	    [LIBS="$LIBS -lcurses"
 	     AC_TRY_LINK(
-		 [\#include <curses.h>],
+		 [#include <curses.h>],
 		 [chtype a; int b=A_STANDOUT, c=KEY_LEFT; initscr(); ],
 		 jcf_cv_curses=yes, jcf_cv_curses=no)])
 	if test "$jcf_cv_curses" = yes
