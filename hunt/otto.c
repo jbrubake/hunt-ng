@@ -59,12 +59,7 @@
 
 #define panic(m)	_panic(__FILE__,__LINE__,m)
 
-/* FIXME: shouldn't need to do this... */
-#ifdef LINUX
-unsigned int	Otto_pause 	= 50000;
-#else
-useconds_t	Otto_pause 	= 50000;
-#endif
+struct timespec Otto_pause	= {0, 50000};
 
 int	Otto_mode;
 
@@ -160,8 +155,8 @@ otto(y, x, face, buf, buflen)
 {
 	int		i;
 
-	if (usleep(Otto_pause) < 0)
-		panic("usleep");
+	if (nanosleep(&Otto_pause) < 0)
+		panic("nanosleep");
 
 	/* save away parameters so other functions may use/update info */
 	switch (face) {
