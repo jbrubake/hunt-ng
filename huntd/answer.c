@@ -80,7 +80,7 @@ answer_first()
 		return;
 	}
 
-#ifdef HAVE_TCPD
+#ifdef HAVE_LIBWRAP
 	/* Check for access permissions: */
 	request_init(&ri, RQ_DAEMON, "huntd", RQ_FILE, newsock, 0);
 	fromhost(&ri);

@@ -1219,7 +1219,7 @@ send_stats()
 		return;
 	}
 
-#ifdef HAVE_TCPD
+#ifdef HAVE_LIBWRAP
 	/* Check for access permissions: */
 	request_init(&ri, RQ_DAEMON, "huntd", RQ_FILE, s, 0);
 	fromhost(&ri);
@@ -1355,7 +1355,7 @@ handle_wkport(fd)
 	u_int16_t		response;
 	struct request_info	ri;
 
-#ifdef HAVE_TCPD
+#ifdef HAVE_LIBWRAP
 	request_init(&ri, RQ_DAEMON, "huntd", RQ_FILE, fd, 0);
 	fromhost(&ri);
 	/* Do we allow access? */

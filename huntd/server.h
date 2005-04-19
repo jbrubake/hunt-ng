@@ -46,7 +46,7 @@
 #endif
 
 /* FIXME: test if we have it! */
-#define HAVE_TCPD
+#define HAVE_LIBWRAP
 
 /*
  * Choose MAXPL and MAXMON carefully.  The screen is assumed to be
