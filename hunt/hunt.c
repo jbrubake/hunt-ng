@@ -78,7 +78,7 @@ char	map_key[256];			/* what to map keys to */
 FLAG	no_beep = FALSE;
 char	*Send_message = NULL;
 char	team = '-';
-#ifdef USE_CURSES
+#ifndef USE_OLD_CURSES
 FLAG	Use_Color = TRUE;
 #else
 FLAG	Use_Color = FALSE;
