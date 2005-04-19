@@ -10,6 +10,8 @@
 
 #ifdef LINUX
 
+#include "../config.h"
+
 #include <stdio.h>
 #include <sys/types.h>
 #include <malloc.h>

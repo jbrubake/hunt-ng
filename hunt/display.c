@@ -5,9 +5,7 @@
  * David Leonard <d@openbsd.org>, 1999. Public domain.
  */
 
-#if defined(__OpenBSD__) && !defined(USE_CURSES)
-#define USE_CURSES
-#endif
+#include "../config.h"
 
 #include <sys/cdefs.h>
 #include "display.h"

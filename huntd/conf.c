@@ -1,6 +1,8 @@
 /*	$OpenBSD: conf.c,v 1.6 2004/01/16 00:13:19 espie Exp $	*/
 /* David Leonard <d@openbsd.org>, 1999. Public domain. */
 
+#include "../config.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <dirent.h>

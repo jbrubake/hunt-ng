@@ -31,6 +31,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "../config.h"
+
 #include <ctype.h>
 #include <errno.h>
 #include <fcntl.h>

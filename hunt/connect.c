@@ -31,6 +31,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "../config.h"
+
 #include <signal.h>
 #include <unistd.h>
 #include <string.h>
