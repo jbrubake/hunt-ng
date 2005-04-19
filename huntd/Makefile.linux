@@ -26,7 +26,7 @@ CPPFLAGS+=-I../lib
 CPPFLAGS+=-DLINUX
 
 $(PROG): $(OBJS)
-	gcc $(LDADD) -o $(PROG) $(OBJS)
+	gcc -o $(PROG) $(OBJS) $(LDADD)
 
 clean:
 	rm -f *.o huntd core

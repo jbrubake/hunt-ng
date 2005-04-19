@@ -45,10 +45,8 @@
 #define SIGINFO SIGUSR1
 #endif
 
-/* FIXME: better test - and anyway, I *do* have tcpd! */
-#ifndef LINUX
+/* FIXME: test if we have it! */
 #define HAVE_TCPD
-#endif
 
 /*
  * Choose MAXPL and MAXMON carefully.  The screen is assumed to be
