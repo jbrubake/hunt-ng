@@ -45,9 +45,6 @@
 #define SIGINFO SIGUSR1
 #endif
 
-/* FIXME: test if we have it! */
-#define HAVE_LIBWRAP
-
 /*
  * Choose MAXPL and MAXMON carefully.  The screen is assumed to be
  * 23 lines high and will only tolerate (MAXPL == 17 && MAXMON == 0)
