@@ -4,4 +4,4 @@ INCLUDES = -I$(top_srcdir)/huntd -I$(top_srcdir)/lib
 
 bin_PROGRAMS = hunt-hacked
 
-hunt_hacked_SOURCES = connect.c display.c hunt.c list.c otto.c playit.c client.h display.h list.h hunt.h
+hunt_hacked_SOURCES = connect.c display.c hunt.c list.c otto.c playit.c client.h display.h list.h $(top_srcdir)/huntd/hunt.h
