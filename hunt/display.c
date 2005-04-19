@@ -10,7 +10,8 @@
 #include <sys/cdefs.h>
 #include "display.h"
 
-#if !defined(USE_CURSES)
+/* Currently never defined: */
+#ifdef USE_OLD_CURSES
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -285,7 +286,16 @@ display_redraw_screen()
 
 #else /* CURSES */ /* --------------------------------------------------- */
 
+#ifdef HAVE_NCURSES_H
+#include <ncurses.h>
+#else
+#ifdef HAVE_CURSES_H
 #include <curses.h>
+#else
+#error
+#endif
+#endif
+
 #include "hunt.h"
 
 static int
