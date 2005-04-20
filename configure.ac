@@ -41,13 +41,9 @@ AC_CHECK_MEMBER([struct sockaddr_in.sin_len], AC_DEFINE([SIN_HAS_SIN_LEN], [], [
 
 # Checks for library functions.
 AC_PROG_GCC_TRADITIONAL
-
-# FIXME: add replacement malloc, memcmp and realloc to lib/
-#   or at least give a nice error if we don't have them
-#AC_FUNC_MALLOC
-#AC_FUNC_MEMCMP
-#AC_FUNC_REALLOC
-
+AC_FUNC_MALLOC
+AC_FUNC_MEMCMP
+AC_FUNC_REALLOC
 AC_FUNC_SELECT_ARGTYPES
 AC_TYPE_SIGNAL
 
@@ -61,7 +57,7 @@ fi
 AC_CHECK_FUNCS([gethostbyaddr gethostbyname gettimeofday inet_ntoa memmove memset select socket strchr strpbrk strrchr strtol],, AC_MSG_ERROR([missing required function]))
 
 # The following are defined in lib/ if the system doesn't have them:
-AC_REPLACE_FUNCS([fgetln strlcat strlcpy])
+AC_CHECK_FUNCS([fgetln strlcat strlcpy])
 
 
 AC_CONFIG_FILES([Makefile
