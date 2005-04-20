@@ -1,4 +1,4 @@
-LDADD = @LIBS@ -lhunt
+LDADD = -lhunt
 AM_LDFLAGS = -L$(top_srcdir)/lib
 INCLUDES = -I$(top_srcdir)/lib
 
