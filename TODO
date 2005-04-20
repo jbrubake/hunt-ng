@@ -1,5 +1,3 @@
-Build:
-    autoconf
 Configuration:
     ~/.huntrc (instead of/as well as $HUNT)
 Team play:
