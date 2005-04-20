@@ -51,10 +51,6 @@
 
 #ifdef HAVE_SYS_SOCKIO_H
 #include <sys/sockio.h>
-#elif HAVE_ASM_SOCKET_H
-#include <asm/socket.h>
-#else
-#error
 #endif
 
 #include <netinet/in.h>

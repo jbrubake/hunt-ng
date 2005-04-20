@@ -26,7 +26,10 @@ AC_HEADER_STDC
 AC_CHECK_HEADERS([arpa/inet.h fcntl.h inttypes.h malloc.h memory.h netdb.h netinet/in.h paths.h stddef.h stdint.h stdlib.h string.h strings.h sys/file.h sys/ioctl.h sys/socket.h sys/time.h syslog.h termios.h unistd.h],,AC_MSG_ERROR([missing required header]))
 
 # I add:
-AC_CHECK_HEADERS([sys/sockio.h asm/socket.h])
+# FIXME: when do we need this, and what do we need when we don't have it?
+#   It appears to be used on (at least Net)BSD for the SIO* ioctls. On linux
+#   these are included with ioctl.h.
+AC_CHECK_HEADERS([sys/sockio.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
