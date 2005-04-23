@@ -8,8 +8,11 @@ huntd gets SIGPIPE when a client quits
 	We do appear to write to a dead socket in this case, but then we
 	always have and the bug is new (seems to have been introduced along
 	with colour, or soon prior)
+
 monitors can't communicate
+
 man pages need updating
+
 with -Drounds=1, typing messages is annoyingly slow.
     Only solution would be to move the message composition code to the client,
     and send the line to the server in one go when it's finished. This would
