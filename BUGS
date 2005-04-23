@@ -9,6 +9,10 @@ On SDF (Alpha, NetBSD), getting 'hunt-hacked: sendto: Invalid argument'
 GCC 3.2.3 segfaults with -O2 (on my machine anyway)
     When someone gets killed.
     Not tested other compilers yet.
+    This bug *was* introduced by me.
+    According to gdb, the bug is related to NULL messages. Presumably
+	optimisation means code gets executed in an unexpected order, perhaps
+	leading to messages being sent before they are actually fully created?
 
 huntd gets SIGPIPE when a client quits
     But only if it's run under gdb!
