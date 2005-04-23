@@ -59,6 +59,9 @@ AC_CHECK_FUNCS([gethostbyaddr gethostbyname gettimeofday inet_ntoa memmove memse
 # The following are defined in lib/ if the system doesn't have them:
 AC_CHECK_FUNCS([fgetln strlcat strlcpy])
 
+# FIXME: GCC 3.2.3 segfaults with -O2 (on my machine anyway)
+#   Until tested further, disable -O2 for everyone
+CFLAGS=`echo $CFLAGS | sed 's/-O2//'`
 
 AC_CONFIG_FILES([Makefile
                  hunt/Makefile

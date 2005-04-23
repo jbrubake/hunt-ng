@@ -2,7 +2,7 @@
 
 # Uncomment one of the following:
 CPPFLAGS+=-g # Debugging version
-#CPPFLAGS+=-O2 # Optimised version
+#CPPFLAGS+=-O2 # Optimised version - WARNING: this has been known to cause segfaults!
 
 PREFIX=/usr/local
 

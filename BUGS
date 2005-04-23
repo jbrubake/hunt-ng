@@ -1,3 +1,7 @@
+GCC 3.2.3 segfaults with -O2 (on my machine anyway)
+    When someone gets killed.
+    Not tested other compilers yet.
+
 huntd gets SIGPIPE when a client quits
     But only if it's run under gdb!
     Not a clue what's going on really...
