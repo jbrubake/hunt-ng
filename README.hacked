@@ -2,6 +2,7 @@ This is my hacked version of hunt. It adds:
     * colour
     * a messaging system
     * a new timing system
+    * shared vision for team play
     * other stuff I forget
     * undoubtedly lots of bugs
 
@@ -12,9 +13,7 @@ the original, and I hope others may get enjoyment from it.
 
 I have successfully compiled this on my Gentoo Linux system and on SDF
 (sdf.lonestar.org)'s NetBSD system. I would however not be surprised if it
-failed on yours. Please do send bug reports if it does. The linux support is a
-complete hack, using #IFDEF LINUX in a few places. Were there demand, I would
-write a configure script.
+failed on yours. Please do send bug reports if it does.
 
 There should be a server running on thedave.homelinux.org if you want to come
 play - just run 'hunt-hacked thedave.homelinux.org'.
