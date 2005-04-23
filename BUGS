@@ -1,3 +1,11 @@
+On SDF (Alpha, NetBSD), getting 'hunt-hacked: sendto: Invalid argument'
+    list.c:200
+    when probing for running servers
+    not sure why, or which argument is invalid
+    addr is not NULL, and SA_LEN(addr)==60, other args look fine.
+    Don't understand the 'SA_LEN(addr)==-1' bit, but it causes more of the
+	above warnings if you make it just 'SA_LEN(addr)'!
+    
 GCC 3.2.3 segfaults with -O2 (on my machine anyway)
     When someone gets killed.
     Not tested other compilers yet.
