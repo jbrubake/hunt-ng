@@ -29,7 +29,7 @@ $(PROG): $(OBJS)
 	gcc -o $(PROG) $(OBJS) $(LDADD)
 
 clean:
-	rm -f *.o huntd core
+	rm -f *.o $(PROG) core
 
 install: $(PROG)
 	cp $(PROG) $(PREFIX)/sbin/
