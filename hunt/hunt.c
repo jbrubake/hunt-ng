@@ -71,7 +71,7 @@
 FLAG	Am_monitor = FALSE;
 int	Socket;
 char	map_key[256];			/* what to map keys to */
-FLAG	no_beep = FALSE;
+FLAG	no_beep = TRUE;
 char	*Send_message = NULL;
 char	team = '-';
 #ifndef USE_OLD_CURSES
@@ -586,6 +586,10 @@ env_init(enter_status)
 			}
 			else if (strncmp(envp, "nobeep,", s - envp + 1) == 0) {
 				no_beep = TRUE;
+				envp = s + 1;
+			}
+			else if (strncmp(envp, "beep,", s - envp + 1) == 0) {
+				no_beep = FALSE;
 				envp = s + 1;
 			}
 			else if (strncmp(envp, "name=", s - envp + 1) == 0) {
