@@ -14,8 +14,6 @@ AC_PROG_RANLIB
 AC_PROG_CC
 
 # Checks for libraries.
-# FIXME: Better curses checking (see jcf's)
-#AC_CHECK_LIB([ncurses], [main])
 AC_CHECK_LIB([wrap], [request_init])
 
 # Checks for header files.
