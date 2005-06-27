@@ -39,12 +39,15 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <tcpd.h>
 #include <syslog.h>
 #include <string.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+
+#ifdef HAVE_LIBWRAP
+#include <tcpd.h>
+#endif
 
 #include "hunt.h"
 #include "server.h"
@@ -69,7 +72,6 @@ answer_first()
 	int			newsock;
 	socklen_t		socklen;
 	int			flags;
-	struct request_info	ri;
 	struct spawn *sp;
 
 	/* Answer the call to hunt: */
@@ -81,13 +83,16 @@ answer_first()
 	}
 
 #ifdef HAVE_LIBWRAP
-	/* Check for access permissions: */
-	request_init(&ri, RQ_DAEMON, "huntd", RQ_FILE, newsock, 0);
-	fromhost(&ri);
-	if (hosts_access(&ri) == 0) {
+	{
+	    struct request_info	ri;
+	    /* Check for access permissions: */
+	    request_init(&ri, RQ_DAEMON, "huntd", RQ_FILE, newsock, 0);
+	    fromhost(&ri);
+	    if (hosts_access(&ri) == 0) {
 		logx(LOG_INFO, "rejected connection from %s", eval_client(&ri));
 		close(newsock);
 		return;
+	    }
 	}
 #endif
 

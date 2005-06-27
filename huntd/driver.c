@@ -43,7 +43,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <tcpd.h>
 #include <syslog.h>
 #include <netdb.h>
 #include <sys/socket.h>
@@ -51,6 +50,11 @@
 #include <arpa/inet.h>
 #include <paths.h>
 #include <fcntl.h>
+
+#ifdef HAVE_LIBWRAP
+#include <tcpd.h>
+#endif
+
 #include "hunt.h"
 #include "conf.h"
 #include "server.h"
@@ -1206,7 +1210,6 @@ send_stats()
 	int	s;
 	struct sockaddr_in	sockstruct;
 	socklen_t	socklen;
-	struct request_info ri;
 	int	flags;
 
 	/* Accept a connection to the statistics socket: */
@@ -1220,13 +1223,16 @@ send_stats()
 	}
 
 #ifdef HAVE_LIBWRAP
-	/* Check for access permissions: */
-	request_init(&ri, RQ_DAEMON, "huntd", RQ_FILE, s, 0);
-	fromhost(&ri);
-	if (hosts_access(&ri) == 0) {
+	{
+	    struct request_info ri;
+	    /* Check for access permissions: */
+	    request_init(&ri, RQ_DAEMON, "huntd", RQ_FILE, s, 0);
+	    fromhost(&ri);
+	    if (hosts_access(&ri) == 0) {
 		logx(LOG_INFO, "rejected connection from %s", eval_client(&ri));
 		close(s);
 		return;
+	    }
 	}
 #endif
 
@@ -1353,15 +1359,17 @@ handle_wkport(fd)
 	socklen_t		fromlen;
 	u_int16_t		query;
 	u_int16_t		response;
-	struct request_info	ri;
 
 #ifdef HAVE_LIBWRAP
-	request_init(&ri, RQ_DAEMON, "huntd", RQ_FILE, fd, 0);
-	fromhost(&ri);
-	/* Do we allow access? */
-	if (hosts_access(&ri) == 0) {
+	{
+	    struct request_info	ri;
+	    request_init(&ri, RQ_DAEMON, "huntd", RQ_FILE, fd, 0);
+	    fromhost(&ri);
+	    /* Do we allow access? */
+	    if (hosts_access(&ri) == 0) {
 		logx(LOG_INFO, "rejected connection from %s", eval_client(&ri));
 		return;
+	    }
 	}
 #endif
 
