@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([hunt-hacked], [1.1.1], [Martin Bays <mbays@sdf.lonestar.org>])
+AC_INIT([hunt-hacked], [1.1.2], [Martin Bays <mbays@sdf.lonestar.org>])
 #AC_CONFIG_SRCDIR([confdefs.h])
 AC_CONFIG_HEADER([config.h])
 
