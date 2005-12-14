@@ -35,7 +35,7 @@ AC_TYPE_SIZE_T
 AC_HEADER_TIME
 AC_HEADER_STDBOOL
 
-AC_CHECK_MEMBER([struct sockaddr_in.sin_len], AC_DEFINE([SIN_HAS_SIN_LEN], [], [sockaddr_in has sin_len member]))
+AC_CHECK_MEMBER([struct sockaddr_in.sin_len], AC_DEFINE([SIN_HAS_SIN_LEN], [], [sockaddr_in has sin_len member]),,[#include <netinet/in.h>])
 
 # Checks for library functions.
 AC_PROG_GCC_TRADITIONAL
