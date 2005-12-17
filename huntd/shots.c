@@ -227,10 +227,6 @@ no_bullets:
 		sendcom(pp, REFRESH);
 		look(pp);
 	}
-
-
-	/* Flush out and synchronise all the displays: */
-	sendcom(ALL_PLAYERS, REFRESH);
 }
 
 /*
