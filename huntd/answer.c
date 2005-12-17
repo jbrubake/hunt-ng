@@ -258,6 +258,7 @@ answer_next(sp)
 	pp->p_ident = get_ident(&sp->source, sp->sourcelen, sp->uid, 
 	    sp->name, sp->team);
 	pp->p_output = conn;
+	pp->p_output_unflushed = 1;
 	pp->p_death[0] = '\0';
 	pp->p_fd = sp->fd;
 

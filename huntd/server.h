@@ -159,6 +159,7 @@ struct player_def {
 	int	p_flyx, p_flyy;
 	int	p_nboots;
 	FILE	*p_output;
+	int	p_output_unflushed;
 	int	p_fd;
 	int	p_mask;
 	int	p_damage;

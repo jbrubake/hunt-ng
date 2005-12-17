@@ -253,11 +253,15 @@ sendcom(pp, command)
 	va_end(ap);
 
 	if (pp == ALL_PLAYERS) {
-		FOR_EACH_PLAYER(pp)
+		FOR_EACH_PLAYER(pp) {
 			fwrite(buf, sizeof buf[0], len, pp->p_output);
+			pp->p_output_unflushed = 1;
+		}
 		return;
-	} else
+	} else {
 		fwrite(buf, sizeof buf[0], len, pp->p_output);
+		pp->p_output_unflushed = 1;
+	}
 }
 
 /*

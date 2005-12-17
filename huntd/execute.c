@@ -391,6 +391,8 @@ move_player(pp, dir)
 		pp->p_x = x;
 		/* Draw the player in their new position */
 		drawplayer(pp, TRUE);
+		/* Let the player look around */
+		look(pp);
 	}
 }
 
@@ -406,6 +408,7 @@ face(pp, dir)
 	if (pp->p_face != dir) {
 		pp->p_face = dir;
 		drawplayer(pp, TRUE);
+		look(pp);
 	}
 }
 

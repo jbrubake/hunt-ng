@@ -274,7 +274,8 @@ again:
 				sleep_till_next_round();
 				set_next_round_time();
 			}
-			moveshots();
+			if (can_moveshots())
+			    moveshots();
 
 			num_steps++;
 			if (conf_cool_time && (num_steps % conf_cool_time == 0))
@@ -328,7 +329,11 @@ again:
 				sendcom(pp, READY, pp->p_nexec);
 				pp->p_nexec = 0;
 			}
-			flush(pp);
+			if (pp->p_output_unflushed) {
+			    logit(LOG_INFO, "flushing");
+			    flush(pp);
+			    pp->p_output_unflushed = 0;
+			}
 		}
 	} while (Nplayer > 0);
 
