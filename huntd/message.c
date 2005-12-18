@@ -445,14 +445,15 @@ send_next_message(pp)
 			pp->p_message_buf[pp->p_message_buf_num]);
 #endif
 		send_message(pp, pp->p_message_buf[pp->p_message_buf_num]);
+
+		pp->p_message_displayed = TRUE;
+
 		free(pp->p_message_buf[pp->p_message_buf_num]);
 	}
 	else if (pp->p_message_displayed) {
 		cgoto(pp, HEIGHT, 0);
 		ce(pp);
 
-		/* For efficiency, we keep track of whether the bar needs
-		 * blanking: */
 		pp->p_message_displayed = FALSE;
 	}
 

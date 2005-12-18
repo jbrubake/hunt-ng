@@ -411,9 +411,6 @@ send_message(pp, s)
 	outstr_color(pp, s, strlen(s), COL_MESSAGE);
 	ce(pp);
 	gettimeofday(&(pp->p_last_message_time), NULL);
-
-	/* Mark that the message bar is in use, so we blank it out later */
-	pp->p_message_displayed = TRUE;
 }
 
 /*
