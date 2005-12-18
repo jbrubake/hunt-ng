@@ -1,11 +1,11 @@
-On SDF (Alpha, NetBSD), getting 'hunt-hacked: sendto: Invalid argument'
-    list.c:200
-    when probing for running servers
-    not sure why, or which argument is invalid
-    addr is not NULL, and SA_LEN(addr)==60, other args look fine.
-    Don't understand the 'SA_LEN(addr)==-1' bit, but it causes more of the
-	above warnings if you make it just 'SA_LEN(addr)'!
-    
+on SDF (alpha machines running NetBSD):
+    frequent fflushing of the p_output is causing lags. I'm not sure exactly
+    what the problem is. This now only happens when there is alot of activity
+    (bullets moving, explosions rolling etc). It is still annoying. We also
+    still have many unnecessary flushes, flushing only REFRESH commands. It
+    should be possible to reduce these, though my first attempt to do so led
+    to unpleasant freezes.
+
 GCC 3.2.3 segfaults with -O2 (on my machine anyway)
     When someone gets killed.
     Not tested other compilers yet.
