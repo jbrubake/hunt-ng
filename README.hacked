@@ -11,6 +11,9 @@ things, and partially to learn some C... so don't expect good code. If I am
 making it public, it is only because I think it's significantly more fun than
 the original, and I hope others may get enjoyment from it.
 
+There should be a server running at games.forkexec.com (thanks to Justin
+Flude!) - just run 'hunt-hacked games.forkexec.com'.
+
 I have successfully compiled this on my Gentoo Linux system and on SDF
 (sdf.lonestar.org)'s NetBSD system. I would however not be surprised if it
 failed on yours. Please do send bug reports if it does.
