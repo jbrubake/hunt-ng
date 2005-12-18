@@ -74,7 +74,7 @@ int conf_cloaklen =	20;
 int conf_scanlen =	20;
 int conf_mindshot =	2;
 int conf_simstep =	150000;
-int conf_message_time = 1000000;
+int conf_message_time = 1500000;
 int conf_cool_time =	5;
 
 
