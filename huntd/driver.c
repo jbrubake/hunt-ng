@@ -330,7 +330,6 @@ again:
 				pp->p_nexec = 0;
 			}
 			if (pp->p_output_unflushed) {
-			    logit(LOG_INFO, "flushing");
 			    flush(pp);
 			    pp->p_output_unflushed = 0;
 			}
