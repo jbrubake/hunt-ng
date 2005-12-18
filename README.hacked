@@ -15,9 +15,6 @@ I have successfully compiled this on my Gentoo Linux system and on SDF
 (sdf.lonestar.org)'s NetBSD system. I would however not be surprised if it
 failed on yours. Please do send bug reports if it does.
 
-There should be a server running on thedave.homelinux.org if you want to come
-play - just run 'hunt-hacked thedave.homelinux.org'.
-
 Please note that the protocol has changed slightly, so you can not use this
 client (resp server) with the original server (resp client).
 
