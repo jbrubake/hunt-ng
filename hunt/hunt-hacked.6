@@ -32,13 +32,13 @@
 .\" SUCH DAMAGE.
 .\"
 .Dd August 21, 1986
-.Dt HUNT 6
+.Dt HUNT-HACKED 6
 .Os
 .Sh NAME
-.Nm hunt
+.Nm hunt-hacked
 .Nd a multi-player multi-terminal game
 .Sh SYNOPSIS
-.Nm hunt
+.Nm hunt-hacked
 .Op Fl bcfmqsS
 .Op Fl n Ar name
 .Op Fl p Ar port
@@ -70,7 +70,7 @@ The location of the game may be specified by giving the
 .Ar host
 argument.
 This presupposes that a hunt game is already running on that host:  see
-.Xr huntd 6
+.Xr huntd-hacked 6
 for details on how to set up a game on a specific host.
 If more than one game is found, you may pick which game to play in.
 If no games are found,
@@ -236,6 +236,10 @@ Scan
 Cloak
 .Pq hide from scanners
 .Pq Takes 1 charge
+.It Ic Enter
+Type message
+.Pq Sends a message to the other players
+.Pq or executes an extended command - type /help for a list
 .It Ic ^L
 Redraw screen
 .It Ic q
@@ -313,7 +317,7 @@ The number of squares is equal to the number of charges used,
 multiplied by
 .Va slimefactor
 as set by
-.Xr huntd 6
+.Xr huntd-hacked 6
 .Pq default 3 .
 .It
 One small mine and one large mine are placed in the maze for every new player.
@@ -373,12 +377,6 @@ Every 30 deaths or so, a
 will appear.
 It is a wandering bomb which will explode when it hits someone, or
 when it is slimed.
-.It
-If no one moves, everything stands still.
-But see the
-.Va simstep
-configuration variable in
-.Xr huntd 6
 .It
 The environment variable
 .Ev HUNT
@@ -479,22 +477,24 @@ for monitoring
 .El
 .Sh FILES
 .Bl -tag -width Pa -compact
-.It Pa /usr/games/huntd
+.It Pa /usr/games/huntd-hacked
 game coordinator
 .El
 .Sh SEE ALSO
-.Xr huntd 6
+.Xr huntd-hacked 6
 .Sh AUTHORS
 Conrad Huang, Ken Arnold, and Greg Couch;
 .br
 University of California, San Francisco, Computer Graphics Lab
+.br
+hunt -> hunt-hacked by Martin Bays
 .Sh BUGS
 To keep up the pace, not everything is as realistic as possible.
 .Pp
 The historic behaviour of
 .Nm
 automatically starting
-.Xr huntd 6
+.Xr huntd-hacked 6
 is no longer supported.
 .Sh ACKNOWLEDGEMENTS
 We thank Don Kneller,
