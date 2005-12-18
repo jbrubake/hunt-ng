@@ -1,7 +1,0 @@
-./configure
-(cd hunt && make && sudo make install)
-(cd huntd && make && sudo make install)
-
-Note that the configure script is not a proper configure script, by any means.
-If you have to change anything to get this to compile (I would not be at all
-surprised), please tell me (mbays@sdfpau.org) what.
