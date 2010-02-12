@@ -1,6 +1,6 @@
-hunt-hacked-1.1.2
-=================
-hunt-hacked is a fork of the venerable BSD game hunt. It aims to improve
+hunt-ng-1.0
+===========
+hunt-ng is a fork of the venerable BSD game hunt. It aims to improve
 playability of the game while preserving all that made it great. It adds:
     * a new timing system
     * colour
@@ -13,10 +13,13 @@ client (resp server) with the original server (resp client).
 
 Bug reports and/or patches gratefully recieved.
 
-There is a darcs repo for hunt-hacked at
-http://mbays.freeshell.org/darcs-repos/hunt-hacked/
+There is a darcs repo for hunt-ng at
+http://mbays.freeshell.org/darcs-repos/hunt-ng/
 
 Please note that this fork was made 5 years ago largely as a learning exercise
 for the author... don't expect pretty code.
+
+I have a server running semi-permanently - try:
+hunt-ng gonzales.homelinux.org
 
 Martin Bays <mbays@sdf.lonestar.org> 2010

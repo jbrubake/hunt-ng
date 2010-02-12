@@ -10,13 +10,13 @@
 .\"  specifies the terms and conditions for redistribution.
 .\"
 .Dd August 21, 1986
-.Dt HUNTD-HACKED 6
+.Dt HUNTD-NG 6
 .Os
 .Sh NAME
-.Nm huntd-hacked
+.Nm huntd-ng
 .Nd hunt daemon, back-end for hunt game
 .Sh SYNOPSIS
-.Nm huntd-hacked
+.Nm huntd-ng
 .Op Fl s
 .Op Fl p Ar port
 .Op Fl a Ar addr
@@ -72,12 +72,12 @@ you'll need to
 add this line to
 .Pa /etc/inetd.conf :
 .Pp
-.Dl hunt dgram udp wait nobody /usr/games/huntd-hacked HUNT
+.Dl hunt dgram udp wait nobody /usr/games/huntd-ng HUNT
 .Pp
 Do not use any of the command line options \(em if you want
 .Xr inetd 8
 to start up
-.Nm huntd-hacked
+.Nm huntd-ng
 on a private port, change the port listed in
 .Pa /etc/services .
 .Ss "NETWORK RENDEZVOUS"
@@ -89,7 +89,7 @@ to find a
 .Nm hunt
 game in progress.
 If a
-.Nm huntd-hacked
+.Nm huntd-ng
 hears the request, it sends back the port number for the
 .Nm hunt
 process to connect to.
@@ -99,7 +99,7 @@ Regardless of how
 is started, it always checks incoming connections with
 .Xr hosts_access 5 ,
 using a service name of
-.Sq huntd-hacked .
+.Sq huntd-ng .
 .Ss "CONFIGURATION"
 When
 .Nm
@@ -301,7 +301,7 @@ overwritten
 .El
 .Sh SEE ALSO
 .Xr hosts_options 5 ,
-.Xr hunt-hacked 6 ,
+.Xr hunt-ng 6 ,
 .Xr inetd 8
 .Sh AUTHORS
 Conrad Huang, Ken Arnold, and Greg Couch;
@@ -310,5 +310,5 @@ University of California, San Francisco, Computer Graphics Lab
 .Pp
 David Leonard tidied up, and added the configuration file.
 .br
-hunt -> hunt-hacked by Martin Bays
+hunt -> hunt-ng by Martin Bays
 .\"Sh BUGS

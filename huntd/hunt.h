@@ -41,14 +41,13 @@
 
 /* MDB: this is surely a fork rather than the next version, so change the
  * version number completely: */
-# define	HUNT_VERSION		(('m' << 8) | 'b')
+# define	HUNT_VERSION		(('n' << 8) | 'g')
 
-/* Hell, and the port (FIXME: change back if this is ever going to be released
- * properly! */
+/* MDB: We've changed the protocol for hunt-ng, so change the port too: */
 /* # define	HUNT_PORT_NAME		("hunt") */
 /* # define	HUNT_PORT		(('h' << 8) | 't') */
 # define	HUNT_PORT		(('h' << 8) | 'h') /* "Hacked Hunt" */
-# define	HUNT_PORT_NAME		("hunt-hacked")
+# define	HUNT_PORT_NAME		("hunt-ng")
 
 # define	ADDCH		('a' | 0200)
 # define	MOVE		('m' | 0200)

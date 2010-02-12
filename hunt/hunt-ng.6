@@ -32,13 +32,13 @@
 .\" SUCH DAMAGE.
 .\"
 .Dd August 21, 1986
-.Dt HUNT-HACKED 6
+.Dt HUNT-NG 6
 .Os
 .Sh NAME
-.Nm hunt-hacked
+.Nm hunt-ng
 .Nd a multi-player multi-terminal game
 .Sh SYNOPSIS
-.Nm hunt-hacked
+.Nm hunt-ng
 .Op Fl bcfmoqsS
 .Op Fl n Ar name
 .Op Fl p Ar port
@@ -70,7 +70,7 @@ The location of the game may be specified by giving the
 .Ar host
 argument.
 This presupposes that a hunt game is already running on that host:  see
-.Xr huntd-hacked 6
+.Xr huntd-ng 6
 for details on how to set up a game on a specific host.
 If more than one game is found, you may pick which game to play in.
 If no games are found,
@@ -324,7 +324,7 @@ The number of squares is equal to the number of charges used,
 multiplied by
 .Va slimefactor
 as set by
-.Xr huntd-hacked 6
+.Xr huntd-ng 6
 .Pq default 3 .
 .It
 One small mine and one large mine are placed in the maze for every new player.
@@ -484,24 +484,24 @@ for monitoring
 .El
 .Sh FILES
 .Bl -tag -width Pa -compact
-.It Pa /usr/games/huntd-hacked
+.It Pa /usr/games/huntd-ng
 game coordinator
 .El
 .Sh SEE ALSO
-.Xr huntd-hacked 6
+.Xr huntd-ng 6
 .Sh AUTHORS
 Conrad Huang, Ken Arnold, and Greg Couch;
 .br
 University of California, San Francisco, Computer Graphics Lab
 .br
-hunt -> hunt-hacked by Martin Bays
+hunt -> hunt-ng by Martin Bays
 .Sh BUGS
 To keep up the pace, not everything is as realistic as possible.
 .Pp
 The historic behaviour of
 .Nm
 automatically starting
-.Xr huntd-hacked 6
+.Xr huntd-ng 6
 is no longer supported.
 .Sh ACKNOWLEDGEMENTS
 We thank Don Kneller,
