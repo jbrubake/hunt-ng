@@ -1,4 +1,11 @@
-on SDF (alpha machines running NetBSD):
+GCC 3.2.3 segfaults with -O2 (on my machine anyway) when someone gets killed.
+    This bug *was* introduced by me.
+    Seems fine 4 years later with GCC 4.1.2.
+    According to gdb, the bug is related to NULL messages. Presumably
+	optimisation means code gets executed in an unexpected order, perhaps
+	leading to messages being sent before they are actually fully created?
+
+On SDF (alpha machines running NetBSD):
     frequent fflushing of the p_output is causing lags. I'm not sure exactly
     what the problem is. This now only happens when there is alot of activity
     (bullets moving, explosions rolling etc). It is still annoying. We also
@@ -6,26 +13,5 @@ on SDF (alpha machines running NetBSD):
     should be possible to reduce these, though my first attempt to do so led
     to unpleasant freezes.
 
-GCC 3.2.3 segfaults with -O2 (on my machine anyway)
-    When someone gets killed.
-    Not tested other compilers yet.
-    This bug *was* introduced by me.
-    According to gdb, the bug is related to NULL messages. Presumably
-	optimisation means code gets executed in an unexpected order, perhaps
-	leading to messages being sent before they are actually fully created?
-
-huntd gets SIGPIPE when a client quits
-    But only if it's run under gdb!
-    Not a clue what's going on really...
-	We do appear to write to a dead socket in this case, but then we
-	always have and the bug is new (seems to have been introduced along
-	with colour, or soon prior)
-
-monitors can't communicate
-
-man pages need updating
-
-with -Drounds=1, typing messages is annoyingly slow.
-    Only solution would be to move the message composition code to the client,
-    and send the line to the server in one go when it's finished. This would
-    blatantly be cleaner anyway.
+    Remark (2010): above notes made in 2005; I haven't tested to see if it
+    still applies.

@@ -30,7 +30,7 @@ int conf_dropboots =	1;
 int conf_scan =		1;
 int conf_cloak =	1;
 int conf_rounds =	1;
-int conf_show_pain =	0;
+int conf_show_pain =	1;
 int conf_pain_message =	1;
 int conf_msg_self =	1;
 int conf_color =	1;
@@ -64,6 +64,7 @@ int conf_bulspd =	5;
 int conf_ishots =	15;
 int conf_nshots =	5;
 int conf_maxncshot =	2;
+int conf_cool_time =	5;
 int conf_maxdam =	10;
 int conf_mindam =	5;
 int conf_stabdam =	2;
@@ -76,7 +77,6 @@ int conf_scanlen =	20;
 int conf_mindshot =	2;
 int conf_simstep =	150000;
 int conf_message_time = 1500000;
-int conf_cool_time =	5;
 
 
 struct kwvar {
@@ -131,6 +131,7 @@ static struct kwvar keywords[] = {
 	{ "ishots",		&conf_ishots,		Vint },
 	{ "nshots",		&conf_nshots,		Vint },
 	{ "maxncshot",		&conf_maxncshot,	Vint },
+	{ "cool_time",		&conf_cool_time,	Vint },
 	{ "maxdam",		&conf_maxdam,		Vint },
 	{ "mindam",		&conf_mindam,		Vint },
 	{ "stabdam",		&conf_stabdam,		Vint },
@@ -143,7 +144,6 @@ static struct kwvar keywords[] = {
 	{ "mindshot",		&conf_mindshot,		Vint },
 	{ "simstep",		&conf_simstep,		Vint },
 	{ "message_time",	&conf_message_time,	Vint },
-	{ "cool_time",		&conf_cool_time,	Vint },
 
 	{ NULL, NULL, Vint }
 };

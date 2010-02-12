@@ -6,6 +6,12 @@ Otto:
     be less stupid
     team play
     handicap
+Messaging system:
+    allow monitors to type messages.
+    with -Drounds=1, typing messages is slow, and lag leads to missing chars.
+	Only solution would be to move the message composition code to the
+	client, and send the line to the server in one go when it's finished.
+	This would blatantly be cleaner anyway.
 Misc:
     replays!
 Silly suggestions I'm never going to implement:

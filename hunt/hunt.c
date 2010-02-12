@@ -171,7 +171,7 @@ main(ac, av)
 		default:
 		usage:
 			fputs(
-"usage:\thunt [-bcCfmqsS] [-n name] [-p port] [-t team] [-w message] [[-h] host]\n",
+"usage:\thunt [-bcCfmoqsS] [-n name] [-p port] [-t team] [-w message] [[-h] host]\n",
 			stderr);
 			exit(1);
 		}

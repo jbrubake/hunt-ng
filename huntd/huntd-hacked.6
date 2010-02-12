@@ -158,7 +158,7 @@ enable cloaking
 .It Va rounds
 enforce rounds - each player may only take one action per round, and bullets
 etc. are updated once per round. Round length is given by simstep below.
-.Pq default 0
+.Pq default 1
 .It Va show_pain
 change player symbol when they get hurt (buggy)
 .Pq default 0
@@ -168,6 +168,15 @@ notify the victim of an attack with a message
 .It Va msg_self
 player messages are sent to the sending player as well as everyone else
 .Pq default 1
+.It Va color
+display the map in color
+.Pq default 1
+.It Va share_vision
+allies share vision
+.Pq default 1
+.It Va share_scan
+allies share scanning
+.Pq default 0
 .It Va logerr
 errors to stderr
 .Pq default 1
@@ -226,6 +235,9 @@ percentage chance of absorbing a drone
 .It Va fall_frac
 divisor of damage used for fall damage
 .Pq default 5
+.It Va pmine_cost
+cost in ammo of laying a mine; if 0, laying mines is disabled
+.Pq default 2
 .It Va bulspd
 speed of bullets
 .Pq default 5
@@ -236,8 +248,11 @@ initial ammo for player
 ammo boost for all when new player joins
 .Pq default 5
 .It Va maxncshot
-max number of simultaneous shots per player
+shots after which a player's gun is overheated
 .Pq default 2
+.It Va cool_time
+gun cooling period; if 0, cool when the player moves
+.Pq default 5
 .It Va maxdam
 the initial shield for each player
 .Pq default 10

@@ -39,7 +39,7 @@
 .Nd a multi-player multi-terminal game
 .Sh SYNOPSIS
 .Nm hunt-hacked
-.Op Fl bcfmqsS
+.Op Fl bcfmoqsS
 .Op Fl n Ar name
 .Op Fl p Ar port
 .Op Fl t Ar team
@@ -116,6 +116,10 @@ The
 .Fl p
 .Ar port
 option allows the rendezvous port number to be set.
+.Pp
+The
+.Fl o
+option causes the AI player Otto to play in your stead.
 .Pp
 The
 .Fl w
@@ -228,6 +232,9 @@ Throw bigger slime
 .It Ic P
 Throw biggest slime
 .Pq Takes 20 charges
+.It Ic m
+Lay a small mine
+.Pq Takes 2 charges
 .It Ic s
 Scan
 .Pq show where other players are

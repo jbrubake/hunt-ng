@@ -44,6 +44,9 @@ Words of Warning:
 		withdrawal symptoms are not pretty :-)
 
 Installation:
+	[ Standard './configure && make && make install' procedure should now
+	work - see INSTALL for details. Original section included below for
+	historical interest!  -- MDB 2010 ]
 
 	1. Edit file "Makefile" and make sure the options selected are
 		reasonable.  There are four "make" variables that you

@@ -1,29 +1,22 @@
-This is my hacked version of hunt. It adds:
-    * colour
-    * a messaging system
+hunt-hacked-1.1.2
+=================
+hunt-hacked is a fork of the venerable BSD game hunt. It aims to improve
+playability of the game while preserving all that made it great. It adds:
     * a new timing system
+    * colour
+    * a simple messaging system
     * shared vision for team play
-    * other stuff I forget
-    * undoubtedly lots of bugs
-
-It really is all rather hacky. I wrote it partially because I wanted the above
-things, and partially to learn some C... so don't expect good code. If I am
-making it public, it is only because I think it's significantly more fun than
-the original, and I hope others may get enjoyment from it.
-
-There should be a server running at games.forkexec.com (thanks to Justin
-Flude!) - just run 'hunt-hacked games.forkexec.com'.
-
-I have successfully compiled this on my Gentoo Linux system and on SDF
-(sdf.lonestar.org)'s NetBSD system. I would however not be surprised if it
-failed on yours. Please do send bug reports if it does.
+    * a few other little things you can scour the manpages for.
 
 Please note that the protocol has changed slightly, so you can not use this
 client (resp server) with the original server (resp client).
 
-There is a darcs repo for this at
-http://thedave.homelinux.org:81/~martin/darcs-repos/hunt-hacked/
+Bug reports and/or patches gratefully recieved.
 
-Patches gratefully recieved.
+There is a darcs repo for hunt-hacked at
+http://mbays.freeshell.org/darcs-repos/hunt-hacked/
 
-Martin
+Please note that this fork was made 5 years ago largely as a learning exercise
+for the author... don't expect pretty code.
+
+Martin Bays <mbays@sdf.lonestar.org> 2010

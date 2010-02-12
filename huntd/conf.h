@@ -49,6 +49,7 @@ extern int conf_bulspd;
 extern int conf_ishots;
 extern int conf_nshots;
 extern int conf_maxncshot;
+extern int conf_cool_time;
 extern int conf_maxdam;
 extern int conf_mindam;
 extern int conf_stabdam;
@@ -61,7 +62,6 @@ extern int conf_scanlen;
 extern int conf_mindshot;
 extern int conf_simstep;
 extern int conf_message_time;
-extern int conf_cool_time;
 
 void config(void);
 void config_arg(char *);
