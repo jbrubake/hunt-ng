@@ -11,6 +11,7 @@ extern int conf_fly;
 extern int conf_volcano;
 extern int conf_drone;
 extern int conf_boots;
+extern int conf_dropboots;
 extern int conf_scan;
 extern int conf_cloak;
 extern int conf_rounds;

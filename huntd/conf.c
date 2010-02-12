@@ -26,6 +26,7 @@ int conf_fly =		1;
 int conf_volcano =	1;
 int conf_drone =	1;
 int conf_boots =	1;
+int conf_dropboots =	1;
 int conf_scan =		1;
 int conf_cloak =	1;
 int conf_rounds =	1;
@@ -93,6 +94,7 @@ static struct kwvar keywords[] = {
 	{ "volcano",		&conf_volcano,		Vint },
 	{ "drone",		&conf_drone,		Vint },
 	{ "boots",		&conf_boots,		Vint },
+	{ "dropboots",		&conf_dropboots,	Vint },
 	{ "scan",		&conf_scan,		Vint },
 	{ "cloak",		&conf_cloak,		Vint },
 	{ "rounds",		&conf_rounds,		Vint },

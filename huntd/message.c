@@ -115,7 +115,7 @@ process_command(PLAYER *pp, char *command)
 				}
 			}
 		}
-		else if (strncmp(command, "/inv", 4) == 0) {
+		else if (strncmp(command, "/inv", 4) == 0 && conf_dropboots) {
 			char	*inv_string;
 
 			if (pp->p_nboots)
@@ -128,7 +128,7 @@ process_command(PLAYER *pp, char *command)
 
 			message_formatted(pp, TRUE, "You have: %s", inv_string);
 		}
-		else if (strncmp(command, "/dropboots", 10) == 0) {
+		else if (strncmp(command, "/dropboots", 10) == 0 && conf_dropboots) {
 
 			if (!pp->p_nboots) {
 				message(pp, TRUE, "But you aren't wearing any boots!");
