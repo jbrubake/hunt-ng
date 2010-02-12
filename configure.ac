@@ -14,7 +14,12 @@ AC_PROG_RANLIB
 AC_PROG_CC
 
 # Checks for libraries.
-AC_CHECK_LIB([wrap], [request_init])
+AC_ARG_WITH([libwrap],
+	    [AS_HELP_STRING([--without-libwrap], [disable support for libwrap])],
+	    [],
+	    [with_libwrap=yes])
+AS_IF([test "x$with_libwrap" != xno],
+      [AC_CHECK_LIB([wrap], [request_init])])
 
 # Checks for header files.
 AC_HEADER_DIRENT
