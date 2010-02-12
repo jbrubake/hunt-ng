@@ -31,6 +31,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "../config.h"
+
 #include <ctype.h>
 #include <err.h>
 #include <errno.h>
@@ -47,9 +49,7 @@
 #include <sys/socket.h>
 #include <sys/ioctl.h>
 
-#ifdef LINUX
-#include <asm/socket.h>
-#else
+#ifdef HAVE_SYS_SOCKIO_H
 #include <sys/sockio.h>
 #endif
 
@@ -71,8 +71,14 @@
 FLAG	Am_monitor = FALSE;
 int	Socket;
 char	map_key[256];			/* what to map keys to */
-FLAG	no_beep = FALSE;
+FLAG	no_beep = TRUE;
 char	*Send_message = NULL;
+char	team = '-';
+#ifndef USE_OLD_CURSES
+FLAG	Use_Color = TRUE;
+#else
+FLAG	Use_Color = FALSE;
+#endif
 
 static char	*Sock_host;
 static char	*use_port;
@@ -85,15 +91,11 @@ static socklen_t Daemon_sa_len;		/* not all systems have an sa_len
 
 
 static char	name[NAMELEN];
-static char	team = '-';
 
 static int	in_visual;
 
 static void	dump_scores(void);
 static long	env_init(long);
-static void	load_config(FILE *, char *, long *);
-static long	config(long);
-static void	process_options(char *, long *);
 static void	fill_in_blanks(void);
 static void	leave(int, char *) __attribute__((__noreturn__));
 static void	sigterm(int);
@@ -115,9 +117,8 @@ main(ac, av)
 	int		option;
 	struct servent	*se;
 
-	enter_status = config((long) Q_CLOAK);
-	enter_status = env_init(enter_status);
-	while ((c = getopt(ac, av, "Sbcfh:l:mn:op:qst:w:")) != -1) {
+	enter_status = env_init((long) Q_CLOAK);
+	while ((c = getopt(ac, av, "SbcCfh:l:mn:op:qst:w:")) != -1) {
 		switch (c) {
 		case 'l':	/* rsh compatibility */
 		case 'n':
@@ -155,6 +156,9 @@ main(ac, av)
 		case 'c':
 			enter_status = Q_CLOAK;
 			break;
+		case 'C':
+			Use_Color = FALSE;
+			break;
 		case 'f':
 			enter_status = Q_FLY;
 			break;
@@ -167,7 +171,7 @@ main(ac, av)
 		default:
 		usage:
 			fputs(
-"usage:\thunt [-bcfmqsS] [-n name] [-p port] [-t team] [-w message] [[-h] host]\n",
+"usage:\thunt [-bcCfmqsS] [-n name] [-p port] [-t team] [-w message] [[-h] host]\n",
 			stderr);
 			exit(1);
 		}
@@ -178,7 +182,7 @@ main(ac, av)
 		Sock_host = av[ac - 1];
 
 	if (Server_port == 0) {
-		se = getservbyname("hunt", "udp");
+		se = getservbyname(HUNT_PORT_NAME, "udp");
 		if (se != NULL)
 			Server_port = ntohs(se->s_port);
 		else
@@ -214,6 +218,10 @@ main(ac, av)
 
 	(void) fflush(stdout);
 	display_open();
+
+	if (Use_Color)
+	    display_init_color();
+
 	in_visual = TRUE;
 	if (LINES < SCREEN_HEIGHT || COLS < SCREEN_WIDTH) {
 		errno = 0;
@@ -250,7 +258,7 @@ main(ac, av)
 			leave(1, "socket");
 
 		option = 1;
-#ifndef LINUX
+#ifdef SO_USELOOPBACK
 		if (setsockopt(Socket, SOL_SOCKET, SO_USELOOPBACK,
 		    &option, sizeof option) < 0)
 			warn("setsockopt loopback");
@@ -555,182 +563,112 @@ env_init(enter_status)
 	long	enter_status;
 {
 	int	i;
-	char	*envp;
+	char	*envp, *envname, *s;
 
 	/* Map all keys to themselves: */
 	for (i = 0; i < 256; i++)
 		map_key[i] = (char) i;
 
-	if ((envp = getenv("HUNT")) != NULL)
-		process_options(envp, &enter_status);
-	return enter_status;
-}
-
-static void
-load_config(f, fnm, enter_status_p)
-	FILE *	f;
-	char *	fnm;
-	long *	enter_status_p;
-{
-	char buf[BUFSIZ];
-	size_t len;
-	int line;
-	char *p;
-
-	line = 0;
-	
-	while ((p = fgetln(f, &len)) != NULL) {
-		line++;
-		while (p[len-1] == '\n' || p[len-1] == '\r')
-			p[--len] = '\0';
-		if (line > 1)
-			/* Just mangle into the environment variable form for
-			 * now. TODO: do it properly. */
-			strlcat(buf, ",", BUFSIZ);
-		strlcat(buf, p, BUFSIZ);
-	}
-	process_options(buf, enter_status_p);
-}
-
-/*
- * load various config file, allowing later ones to 
- * overwrite earlier values
- * XXX: copied from server
- * TODO: unite server and client config handling
- * FIXME: half-complete! Highly buggy!
- */
-static long
-config(long enter_status)
-{
-	char *home;
-	char nm[BUFSIZ];
-	static char *fnms[] = { 
-		"/etc/hunt_client.conf",
-		"%s/.hunt_client.conf", 
-		"%s/.huntrc", 
-		".hunt_client.conf", 
-		".huntrc", 
-		NULL
-	};
-	int fn;
-	FILE *f;
-
-	/* All the %s's get converted to $HOME */
-	if ((home = getenv("HOME")) == NULL)
-		home = "";
-
-	for (fn = 0; fnms[fn]; fn++) {
-		snprintf(nm, sizeof nm, fnms[fn], home);
-		if ((f = fopen(nm, "r")) != NULL) {
-			load_config(f, nm, &enter_status);
-			fclose(f);
-		} 
-		/* no logging
-		else if (errno != ENOENT)
-			logit(LOG_WARNING, "%s", nm);
-		*/
-	}
-	return enter_status;
-}
-
-static void
-process_options(char *optstr, long *enter_status_p)
-{
-	char	*s;
-	char	*optname = NULL;
-
-	while ((s = strpbrk(optstr, "=,")) != NULL) {
-		if (strncmp(optstr, "cloak,", s - optstr + 1) == 0) {
-			*enter_status_p = Q_CLOAK;
-			optstr = s + 1;
-		}
-		else if (strncmp(optstr, "scan,", s - optstr + 1) == 0) {
-			*enter_status_p = Q_SCAN;
-			optstr = s + 1;
-		}
-		else if (strncmp(optstr, "fly,", s - optstr + 1) == 0) {
-			*enter_status_p = Q_FLY;
-			optstr = s + 1;
-		}
-		else if (strncmp(optstr, "nobeep,", s - optstr + 1) == 0) {
-			no_beep = TRUE;
-			optstr = s + 1;
-		}
-		else if (strncmp(optstr, "name=", s - optstr + 1) == 0) {
-			optname = s + 1;
-			if ((s = strchr(optstr, ',')) == NULL) {
-				*optstr = '\0';
-				strlcpy(name, optname, sizeof name);
-				break;
+	envname = NULL;
+	if ((envp = getenv("HUNT")) != NULL) {
+		while ((s = strpbrk(envp, "=,")) != NULL) {
+			if (strncmp(envp, "cloak,", s - envp + 1) == 0) {
+				enter_status = Q_CLOAK;
+				envp = s + 1;
 			}
-			*s = '\0';
-			strlcpy(name, optname, sizeof name);
-			optstr = s + 1;
-		}
-		else if (strncmp(optstr, "port=", s - optstr + 1) == 0) {
-			use_port = s + 1;
-			Server_port = atoi(use_port);
-			if ((s = strchr(optstr, ',')) == NULL) {
-				*optstr = '\0';
-				break;
+			else if (strncmp(envp, "scan,", s - envp + 1) == 0) {
+				enter_status = Q_SCAN;
+				envp = s + 1;
 			}
-			*s = '\0';
-			optstr = s + 1;
-		}
-		else if (strncmp(optstr, "host=", s - optstr + 1) == 0) {
-			Sock_host = s + 1;
-			if ((s = strchr(optstr, ',')) == NULL) {
-				*optstr = '\0';
-				break;
+			else if (strncmp(envp, "fly,", s - envp + 1) == 0) {
+				enter_status = Q_FLY;
+				envp = s + 1;
 			}
-			*s = '\0';
-			optstr = s + 1;
-		}
-		else if (strncmp(optstr, "message=", s - optstr + 1) == 0) {
-			Send_message = s + 1;
-			if ((s = strchr(optstr, ',')) == NULL) {
-				*optstr = '\0';
-				break;
+			else if (strncmp(envp, "nobeep,", s - envp + 1) == 0) {
+				no_beep = TRUE;
+				envp = s + 1;
 			}
-			*s = '\0';
-			optstr = s + 1;
-		}
-		else if (strncmp(optstr, "team=", s - optstr + 1) == 0) {
-			team = *(s + 1);
-			if (!isdigit(team))
-				team = ' ';
-			if ((s = strchr(optstr, ',')) == NULL) {
-				*optstr = '\0';
-				break;
+			else if (strncmp(envp, "beep,", s - envp + 1) == 0) {
+				no_beep = FALSE;
+				envp = s + 1;
 			}
-			*s = '\0';
-			optstr = s + 1;
-		}			/* must be last option */
-		else if (strncmp(optstr, "mapkey=", s - optstr + 1) == 0) {
-			for (s = s + 1; *s != '\0'; s += 2) {
-				map_key[(unsigned int) *s] = *(s + 1);
-				if (*(s + 1) == '\0') {
+			else if (strncmp(envp, "name=", s - envp + 1) == 0) {
+				envname = s + 1;
+				if ((s = strchr(envp, ',')) == NULL) {
+					*envp = '\0';
+					strlcpy(name, envname, sizeof name);
 					break;
 				}
+				*s = '\0';
+				strlcpy(name, envname, sizeof name);
+				envp = s + 1;
 			}
-			*optstr = '\0';
-			break;
-		} else {
-			*s = '\0';
-			printf("unknown option %s\n", optstr);
-			if ((s = strchr(optstr, ',')) == NULL) {
-				*optstr = '\0';
+			else if (strncmp(envp, "port=", s - envp + 1) == 0) {
+				use_port = s + 1;
+				Server_port = atoi(use_port);
+				if ((s = strchr(envp, ',')) == NULL) {
+					*envp = '\0';
+					break;
+				}
+				*s = '\0';
+				envp = s + 1;
+			}
+			else if (strncmp(envp, "host=", s - envp + 1) == 0) {
+				Sock_host = s + 1;
+				if ((s = strchr(envp, ',')) == NULL) {
+					*envp = '\0';
+					break;
+				}
+				*s = '\0';
+				envp = s + 1;
+			}
+			else if (strncmp(envp, "message=", s - envp + 1) == 0) {
+				Send_message = s + 1;
+				if ((s = strchr(envp, ',')) == NULL) {
+					*envp = '\0';
+					break;
+				}
+				*s = '\0';
+				envp = s + 1;
+			}
+			else if (strncmp(envp, "team=", s - envp + 1) == 0) {
+				team = *(s + 1);
+				if (!isdigit(team))
+					team = ' ';
+				if ((s = strchr(envp, ',')) == NULL) {
+					*envp = '\0';
+					break;
+				}
+				*s = '\0';
+				envp = s + 1;
+			}			/* must be last option */
+			else if (strncmp(envp, "mapkey=", s - envp + 1) == 0) {
+				for (s = s + 1; *s != '\0'; s += 2) {
+					map_key[(unsigned int) *s] = *(s + 1);
+					if (*(s + 1) == '\0') {
+						break;
+					}
+				}
+				*envp = '\0';
 				break;
+			} else {
+				*s = '\0';
+				printf("unknown option %s\n", envp);
+				if ((s = strchr(envp, ',')) == NULL) {
+					*envp = '\0';
+					break;
+				}
+				envp = s + 1;
 			}
-			optstr = s + 1;
+		}
+		if (*envp != '\0') {
+			if (envname == NULL)
+				strlcpy(name, envp, sizeof name);
+			else
+				printf("unknown option %s\n", envp);
 		}
 	}
-	if (*optstr != '\0') {
-		if (optname == NULL)
-			strlcpy(name, optstr, sizeof name);
-		else
-			printf("unknown option %s\n", optstr);
-	}
+	return enter_status;
 }
 
 /*
