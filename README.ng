@@ -1,7 +1,7 @@
 hunt-ng-1.0
 ===========
 hunt-ng is a fork of the venerable BSD game hunt. It aims to improve
-playability of the game while preserving all that made it great. It adds:
+playability while preserving the charm of the original. It adds:
     * a new timing system
     * colour
     * a simple messaging system
