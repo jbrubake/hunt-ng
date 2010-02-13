@@ -5,3 +5,6 @@ INCLUDES = -I$(top_srcdir)/huntd -I$(top_srcdir)/lib
 bin_PROGRAMS = hunt-ng
 
 hunt_ng_SOURCES = connect.c display.c hunt.c list.c otto.c playit.c client.h display.h list.h $(top_srcdir)/huntd/hunt.h
+
+man_MANS = hunt-ng.6
+EXTRA_DIST = $(man_MANS)
