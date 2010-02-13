@@ -302,6 +302,7 @@ check_for_player(pp, y, x)
 		else
 			outch_color(rpp, ch, color_of(ch));
 		((char *) rpp->p_maze)[index] = ch;
+		sendcom(rpp, REFRESH);
 	}
 }
 
