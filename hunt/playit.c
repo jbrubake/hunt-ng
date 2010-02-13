@@ -380,7 +380,10 @@ send_stuff()
 	if (count) {
 		nchar_send -= count;
 		if (nchar_send < 0)
+		{
 			count += nchar_send;
+			nchar_send = 0;
+		}
 		(void) write(Socket, inp, count);
 		if (Otto_mode) {
 			/*
