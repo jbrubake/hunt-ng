@@ -23,4 +23,5 @@ lib/Makefile.in
 missing
 stamp-h
 stamp-h1
-
+hunt/hunt-ng
+lib/libhunt.a
