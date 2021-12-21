@@ -34,6 +34,7 @@
 #include "../config.h"
 
 #include <sys/file.h>
+#include <sys/select.h>
 #include <err.h>
 #include <errno.h>
 #include <ctype.h>
