@@ -40,6 +40,7 @@
 #include <termios.h>
 #include <signal.h>
 #include <string.h>
+#include <stdint.h>
 #include <unistd.h>
 #include <stdio.h>
 #include "hunt.h"
@@ -83,7 +84,7 @@ playit()
 	int		ch;
 	int		clr = 0;
 	int		y, x;
-	u_int32_t	version;
+	uint32_t	version;
 	int		otto_y, otto_x;
 	char		otto_face = ' ';
 	int		chars_processed;
@@ -493,7 +494,7 @@ get_message:
 void
 do_message(char* message)
 {
-	u_int32_t	version;
+	uint32_t	version;
 
 	if (read(Socket, &version, sizeof version) != sizeof version) {
 		bad_con();

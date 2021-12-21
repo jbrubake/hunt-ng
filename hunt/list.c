@@ -41,7 +41,7 @@ struct driver *drivers = NULL;
 int numdrivers = 0;
 int maxdrivers = 0;
 
-u_int16_t Server_port;
+uint16_t Server_port;
 
 static int numprobes = 0;
 static int probe_sock[64];
@@ -62,7 +62,7 @@ next_driver_fd(fd)
 	int	maxfd = -1;
 	int	i, s, ret, len;
 	struct driver *driver;
-	u_int16_t resp;
+	uint16_t resp;
 
 	if (fd == -1 && numprobes == 0)
 		return NULL;
@@ -167,9 +167,9 @@ driver_name(driver)
 static int
 start_probe(addr, req)
 	struct sockaddr *addr;
-	u_int16_t req;
+	uint16_t req;
 {
-	u_int16_t msg;
+	uint16_t msg;
 	int s;
 	int enable;
 
@@ -219,7 +219,7 @@ probe_cleanup()
  */
 void
 probe_drivers(req, preferred)
-	u_int16_t	req;
+	uint16_t	req;
 	char 		*preferred;
 {
 	struct sockaddr_in *target;

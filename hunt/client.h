@@ -30,6 +30,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <stdint.h>
+
 /* hunt.c */
 extern FLAG	Am_monitor;		/* -m flag */
 extern FLAG	no_beep;		/* -b flag */
@@ -44,7 +46,7 @@ void	bad_ver(void);
 void	intr(int);
 
 /* connect.c */
-void	do_connect(char *, u_int8_t, u_int32_t);
+void	do_connect(char *, uint8_t, uint32_t);
 
 /* playit.c */
 void	playit(void);

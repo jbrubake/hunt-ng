@@ -60,7 +60,7 @@
 #include "server.h"
 
 char	*First_arg;		/* pointer to argv[0] */
-u_int16_t Server_port;
+uint16_t Server_port;
 int	Server_socket;		/* test socket to answer datagrams */
 FLAG	should_announce = TRUE;	/* true if listening on standard port */
 u_short	sock_port;		/* port # of tcp listen socket */
@@ -1361,8 +1361,8 @@ handle_wkport(fd)
 {
 	struct sockaddr		fromaddr;
 	socklen_t		fromlen;
-	u_int16_t		query;
-	u_int16_t		response;
+	uint16_t		query;
+	uint16_t		response;
 
 #ifdef HAVE_LIBWRAP
 	{

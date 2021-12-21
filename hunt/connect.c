@@ -36,6 +36,7 @@
 #include <signal.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdint.h>
 
 #include <sys/types.h>
 
@@ -47,11 +48,11 @@
 void
 do_connect(name, team, enter_status)
 	char *		name;
-	u_int8_t	team;
-	u_int32_t	enter_status;
+	uint8_t	team;
+	uint32_t	enter_status;
 {
-	u_int32_t	uid;
-	u_int32_t	mode;
+	uint32_t	uid;
+	uint32_t	mode;
 	char *		Ttyname;
 	char		buf[NAMELEN];
 

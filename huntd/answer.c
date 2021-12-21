@@ -145,7 +145,7 @@ answer_next(sp)
 {
 	PLAYER			*pp;
 	char			*cp1, *cp2;
-	u_int32_t		version;
+	uint32_t		version;
 	FILE			*conn;
 	int			len;
 	char 			teamstr[] = "[x]";
@@ -180,18 +180,18 @@ answer_next(sp)
 
 	/* Extract values from the buffer */
 	cp1 = sp->inbuf;
-	memcpy(&sp->uid, cp1, sizeof (u_int32_t));
-	cp1+= sizeof(u_int32_t);
+	memcpy(&sp->uid, cp1, sizeof (uint32_t));
+	cp1+= sizeof(uint32_t);
 	memcpy(sp->name, cp1, NAMELEN);
 	cp1+= NAMELEN;
-	memcpy(&sp->team, cp1, sizeof (u_int8_t));
-	cp1+= sizeof(u_int8_t);
-	memcpy(&sp->enter_status, cp1, sizeof (u_int32_t));
-	cp1+= sizeof(u_int32_t);
+	memcpy(&sp->team, cp1, sizeof (uint8_t));
+	cp1+= sizeof(uint8_t);
+	memcpy(&sp->enter_status, cp1, sizeof (uint32_t));
+	cp1+= sizeof(uint32_t);
 	memcpy(sp->ttyname, cp1, NAMELEN);
 	cp1+= NAMELEN;
-	memcpy(&sp->mode, cp1, sizeof (u_int32_t));
-	cp1+= sizeof(u_int32_t);
+	memcpy(&sp->mode, cp1, sizeof (uint32_t));
+	cp1+= sizeof(uint32_t);
 
 	/* Convert data from network byte order: */
 	sp->uid = ntohl(sp->uid);
@@ -214,7 +214,7 @@ answer_next(sp)
 		sp->team = ' ';
 
 	/* Tell the other end this server's hunt driver version: */
-	version = htonl((u_int32_t) HUNT_VERSION);
+	version = htonl((uint32_t) HUNT_VERSION);
 	(void) write(sp->fd, &version, sizeof version);
 
 	if (sp->mode == C_MESSAGE) {
@@ -472,7 +472,7 @@ get_ident(sa, salen, uid, name, team)
 {
 	IDENT		*ip;
 	static IDENT	punt;
-	u_int32_t	machine;
+	uint32_t	machine;
 
 	if (sa->sa_family == AF_INET)
 		machine = ntohl((u_long)((struct sockaddr_in *)sa)->sin_addr.s_addr);
